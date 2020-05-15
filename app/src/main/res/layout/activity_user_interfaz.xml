@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserInterfaz">
+
+    <TextView
+        android:id="@+id/IdControl"
+        android:layout_width="413dp"
+        android:layout_height="33dp"
+        android:fontFamily="cursive"
+        android:text="CONECTAR"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <Button
+        android:id="@+id/IdEncender"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IdControl"
+        android:text="Encender"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="92dp" />
+
+    <Button
+        android:id="@+id/IdApagar"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IdEncender"
+        android:text="Apagar"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <TextView
+        android:id="@+id/IdBufferIn"
+        android:layout_width="390dp"
+        android:layout_height="49dp"
+        android:layout_below="@id/IdApagar"
+        android:fontFamily="cursive"
+        android:text="Nombre de Dispositivo:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="324dp" />
+
+    <Button
+        android:id="@+id/IdDesconectar"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IdBufferIn"
+        android:text="Desconectar"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="426dp" />
+</RelativeLayout>

@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1EDC51"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".agenda"
     tools:showIn="@layout/activity_agenda">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#11D853"
-        android:orientation="vertical">
+        android:layout_width="411dp"
+        android:layout_height="145dp"
+        android:background="#E9F0EB"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.331"
+        tools:layout_editor_absoluteX="-1dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -39,4 +44,40 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="144dp"
+        android:text="Guardar "
+        android:textColor="#9C27B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="144dp"
+        android:text="Editar"
+        android:textColor="#9C27B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="295dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="cursive"
+        android:text="Sincroniza tus contactos"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,8 +1,5 @@
 package innovador.proyecto;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,10 +13,12 @@ public class SplashScreen extends MainActivity {
 
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {
-                Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+            public void run() {                             //Este metodo indica que despues del tiempo del splash screen muestra
+                                                            // la siguiente vista de forma automatica este caso el menú
+                Intent intent = new Intent(SplashScreen.this,DispositivosBT.class);
                 startActivity(intent);
             }
+            //tiempo de espera de la pantallo
         } , 1000);
     }
 }

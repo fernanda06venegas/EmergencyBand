@@ -6,22 +6,21 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.provider.ContactsContract;
-import android.view.View;
-import android.widget.EditText;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class agenda extends AppCompatActivity {
     EditText mNombre,mNumero;
     static final int PICK_CONTACT_REQUEST = 1;
-
+    // Crear archivo de preferencias
+    SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,8 @@ public class agenda extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // instancia ...
-         mNombre=findViewById(R.id.nombreId);
-         mNumero=findViewById(R.id.numeroId);
+        mNombre=findViewById(R.id.nombreId);
+        mNumero=findViewById(R.id.numeroId);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -39,7 +38,7 @@ public class agenda extends AppCompatActivity {
             //Metodo de la selección del contacto
 
             public void onClick(View view) {
-              selectercontacts();
+                selectercontacts();
 
             }
         });
@@ -48,7 +47,7 @@ public class agenda extends AppCompatActivity {
     }
 
 
-//Obtenemos los contactos usando URI y pick
+    //Obtenemos los contactos usando URI y pick
     private void  selectercontacts() {
 
         Intent selector=new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
@@ -65,7 +64,7 @@ public class agenda extends AppCompatActivity {
             if (resultCode==RESULT_OK){
                 Uri uri= data.getData();
                 Cursor cursor=getContentResolver().query(uri,null,null,null,null);
- // cursor retorna valores verdaderos
+                // cursor retorna valores verdaderos
                 if (cursor.moveToFirst()){
                     int columnaNombre=cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
                     int columnaNumero=cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
@@ -76,8 +75,20 @@ public class agenda extends AppCompatActivity {
                     mNombre.setText(nombre);
                     mNumero.setText(numero);
 
+                    // Crear editor de preferencias
+                    SharedPreferences.Editor editor = sharedPref.edit();
 
+                    // editor.putIn(id_del_valor, valor_a_almacenar)
+                    editor.putInt("contacto_nombre", Integer.parseInt(nombre));
+                    editor.putInt("contacto_numero", Integer.parseInt(numero));
 
+                    // Almacenar los datos
+                    editor.commit();
+
+                    // Obtener strings guardados
+                    // sharedPref.getString(id_del_valor, valor_en_caso_de_que_este_vacio)
+                    sharedPref.getString("contacto_nombre", "");
+                    sharedPref.getString("contacto_numero", "");
                 }
 
             }

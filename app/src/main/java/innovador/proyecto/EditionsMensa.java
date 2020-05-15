@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -16,17 +18,22 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import javax.microedition.khronos.egl.EGLDisplay;
 
 public class EditionsMensa extends AppCompatActivity  {
 
 
 
-    //Boton que programaeromos
+
     Button Enviar;
-
-
+    EditText txtsms;
+     Button btnsave;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -52,15 +59,28 @@ public class EditionsMensa extends AppCompatActivity  {
         //estos son los parametros predeterminados para el envio del mensaje
         Enviar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                enviarMensaje("3324870305", "Buscame, Estoy en peligro");
+
+                enviarMensaje("3324911788", txtsms);
+
+
             }
         });
     }
   // En este metodo devolvemos un valor para el envio del mensaje tales como si se envia o no y muestra un tipo advertencia o notificación
-    private void enviarMensaje(String numero, String mensaje) {
+  //Se le llama Id del error Pelusa
+        @SuppressLint("WrongViewCast")
+    private void enviarMensaje(String numero, EditText txtsms) {
         try {
             SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(numero, null, mensaje, null, null);
+            txtsms=  findViewById(R.id.txtsms);
+            //getText().toString() nos sirve para guardar los datos de nuestro txtsms
+            Log.d("Valor ET", txtsms.getText().toString());
+            btnsave= findViewById(R.id.btnsave);
+
+            {
+                sms.sendTextMessage( numero , null, txtsms.getText().toString() , null, null);
+            }
+                 //Valores a tomar cuando se realiza el envio del sms
             Toast.makeText(getApplicationContext(), "Mensaje Enviado.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Mensaje no enviado, datos incorrectos.", Toast.LENGTH_LONG).show();
@@ -69,8 +89,13 @@ public class EditionsMensa extends AppCompatActivity  {
 
     }
 
+   //Este metodo guarda los valores que agregamos en el text view
+    public void vervalor(View view) {
 
+        EditText txtsms = (EditText) findViewById(R.id.txtsms);
+        Log.d("Mensaje ",  txtsms.getText().toString());
 
+    }
 
 }
 
