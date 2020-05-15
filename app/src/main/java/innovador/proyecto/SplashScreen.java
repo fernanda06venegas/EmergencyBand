@@ -15,7 +15,7 @@ public class SplashScreen extends MainActivity {
             @Override
             public void run() {                             //Este metodo indica que despues del tiempo del splash screen muestra
                                                             // la siguiente vista de forma automatica este caso el menú
-                Intent intent = new Intent(SplashScreen.this,DispositivosBT.class);
+                Intent intent = new Intent(SplashScreen.this,MainActivity.class);
                 startActivity(intent);
             }
             //tiempo de espera de la pantallo
